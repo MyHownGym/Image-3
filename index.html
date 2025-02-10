@@ -1,89 +1,53 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoom & Texte Survol</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
+<div class="image-container">
+    <img src="https://raw.githubusercontent.com/myhowngym/Image-1/main/image 3.jpg" alt="Image Zoom" class="zoom-image">
+    <div class="image-text">CHF 119,90/SÉANCE</div>
+</div>
 
-        .image-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+<style>
+    /* Conteneur d'image avec effet zoom */
+    .image-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        overflow: hidden;
+    }
 
-        .zoom-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+    /* Image qui peut être zoomée */
+    .zoom-image {
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);  
-            transition: opacity 0.3s ease;
-        }
+    /* Effet de zoom au survol */
+    .image-container:hover .zoom-image {
+        transform: scale(1.2); /* Zoom à 120% */
+    }
 
-        .text-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            padding: 10px 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    /* Texte avec fond mat qui est caché par défaut */
+    .image-container .image-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        visibility: hidden;  /* Cacher le texte par défaut */
+        opacity: 0;  /* Cacher le texte par défaut */
+        transition: visibility 0s, opacity 0.3s ease; /* Transition pour faire apparaître le texte */
+    }
 
-        .text {
-            color: black;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-        }
+    /* Fond mat visible au survol */
+    .image-container:hover .image-text {
+        visibility: visible;
+        opacity: 1;  /* Afficher le texte au survol */
+    }
 
-        .image-container:hover .zoom-image {
-            transform: scale(1.2); 
-        }
-
-        .image-container:hover .overlay {
-            opacity: 1;
-        }
-
-        .image-container:hover .text-container {
-            opacity: 1;
-        }
-    </style>
-</head>
-<body>
-    <div class="image-container">
-        <img src="image 3.JPG" alt="Image Zoom" class="zoom-image">
-        <div class="overlay"></div>
-        <div class="text-container">
-            <p class="text">CHF 99,90/SÉANCE</p>
-        </div>
-    </div>
-</body>
-</html>
+    /* Fond mat au survol */
+    .image-container:hover .zoom-image {
+        filter: brightness(50%); /* Appliquer un fond mat (réduire la luminosité) au survol */
+    }
+</style>
